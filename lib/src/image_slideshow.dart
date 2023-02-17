@@ -11,6 +11,7 @@ class ImageSlideshow extends StatefulWidget {
     this.width = double.infinity,
     this.height = 200,
     this.initialPage = 0,
+    this.showIndicator = true,
     this.indicatorColor,
     this.indicatorBackgroundColor = Colors.grey,
     this.onPageChanged,
@@ -32,6 +33,9 @@ class ImageSlideshow extends StatefulWidget {
 
   /// The page to show when first creating the [ImageSlideshow].
   final int initialPage;
+
+  /// Whether to display indicator or not.
+  final bool showIndicator;
 
   /// The color to paint the indicator.
   final Color? indicatorColor;
@@ -156,13 +160,15 @@ class ImageSlideshowState extends State<ImageSlideshow> {
             child: ValueListenableBuilder<int>(
               valueListenable: _currentPageNotifier,
               builder: (context, value, child) {
-                return Indicator(
-                  count: widget.children.length,
-                  currentIndex: value % widget.children.length,
-                  activeColor: widget.indicatorColor,
-                  backgroundColor: widget.indicatorBackgroundColor,
-                  radius: widget.indicatorRadius,
-                );
+                if(widget.showIndicator){
+                  return Indicator(
+                    count: widget.children.length,
+                    currentIndex: value % widget.children.length,
+                    activeColor: widget.indicatorColor,
+                    backgroundColor: widget.indicatorBackgroundColor,
+                    radius: widget.indicatorRadius,
+                  );
+                }else{return Container(width: 0,height: 0)}
               },
             ),
           ),
