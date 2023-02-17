@@ -168,7 +168,7 @@ class ImageSlideshowState extends State<ImageSlideshow> {
                     backgroundColor: widget.indicatorBackgroundColor,
                     radius: widget.indicatorRadius,
                   );
-                }else{return Container(width: 0,height: 0)}
+                }else{return Container(width: 0,height: 0);}
               },
             ),
           ),
